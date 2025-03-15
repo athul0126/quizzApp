@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:quizapp/Screens/QuizScreen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:quizapp/Screens/welcome_screen.dart';
 import 'package:quizapp/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: '.env');
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -17,8 +21,8 @@ class QuizApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CountdownScreen(),
+    return const MaterialApp(
+      home: WelcomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

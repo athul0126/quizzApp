@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -24,8 +25,6 @@ class DefaultFirebaseOptions {
         return android;
       case TargetPlatform.iOS:
         return ios;
-      case TargetPlatform.macOS:
-        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,39 +42,31 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBIOL5t8v2pU3ZDpKV98gg6B_rSJ-42Qa4',
-    appId: '1:87543980944:web:8ac5a4641a12c107570915',
-    messagingSenderId: '87543980944',
-    projectId: 'quizapp-5d279',
-    authDomain: 'quizapp-5d279.firebaseapp.com',
-    storageBucket: 'quizapp-5d279.appspot.com',
-    measurementId: 'G-G8Y0NS3DJ8',
+  static  FirebaseOptions web = FirebaseOptions(
+    apiKey: dotenv.env['FIREBASE_WEB_API_KEY']!,
+    appId: dotenv.env['FIREBASE_WEB_APP_ID']!,
+    messagingSenderId: dotenv.env['FIREBASE_WEB_MESSAGING_SENDER_ID']!,
+    projectId: dotenv.env['FIREBASE_WEB_PROJECT_ID']!,
+    authDomain: dotenv.env['FIREBASE_WEB_STORAGE_BUCKET']!,
+    storageBucket: dotenv.env['FIREBASE_WEB_AUTH_DOMAIN']!,
+    measurementId: dotenv.env['FIREBASE_WEB_MEASUREMENT_ID']!,
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCDSTbj7I_MlbxlbYyB9exNCgDX-SYQGKY',
-    appId: '1:87543980944:android:a274f88d25c46de5570915',
-    messagingSenderId: '87543980944',
-    projectId: 'quizapp-5d279',
-    storageBucket: 'quizapp-5d279.appspot.com',
+  static  FirebaseOptions android = FirebaseOptions(
+    apiKey: dotenv.env['FIREBASE_ANDROID_API_KEY']!,
+    appId: dotenv.env['FIREBASE_ANDROID_APP_ID']!,
+    messagingSenderId: dotenv.env['FIREBASE_ANDROID_MESSAGING_SENDER_ID']!,
+    projectId: dotenv.env['FIREBASE_ANDROID_PROJECT_ID']!,
+    storageBucket: dotenv.env['FIREBASE_ANDROID_STORAGE_BUCKET']!,
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAlWsku5Nsk_bz-P_cFkwl1GybUtxoXI1g',
-    appId: '1:87543980944:ios:b7852cf6a9c14631570915',
-    messagingSenderId: '87543980944',
-    projectId: 'quizapp-5d279',
-    storageBucket: 'quizapp-5d279.appspot.com',
-    iosBundleId: 'com.example.quizapp',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: dotenv.env['FIREBASE_IOS_API_KEY']!,
+    appId: dotenv.env['FIREBASE_IOS_APP_ID']!,
+    messagingSenderId: dotenv.env['FIREBASE_IOS_MESSAGING_SENDER_ID']!,
+    projectId: dotenv.env['FIREBASE_IOS_PROJECT_ID']!,
+    storageBucket: dotenv.env['FIREBASE_IOS_STORAGE_BUCKET']!,
+    iosBundleId: dotenv.env['FIREBASE_IOS_BUNDLE_ID']!,
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAlWsku5Nsk_bz-P_cFkwl1GybUtxoXI1g',
-    appId: '1:87543980944:ios:c2d933f6a3cee6ca570915',
-    messagingSenderId: '87543980944',
-    projectId: 'quizapp-5d279',
-    storageBucket: 'quizapp-5d279.appspot.com',
-    iosBundleId: 'com.example.quizapp.RunnerTests',
-  );
 }
